@@ -19,6 +19,11 @@
                     <tr *ngFor="let cat of categories">
                         <td>{{cat.id}}</td>
                         <td>{{cat.designation}}</td>
+                        <td>
+                            <button (click)="deleteCategorie(cat)" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

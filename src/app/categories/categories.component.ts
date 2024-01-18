@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../services/categorie.service';
+import { Categorie } from '../models/categorie';
 
 @Component({
   selector: 'app-categories',
@@ -22,4 +23,15 @@ export class CategoriesComponent implements OnInit {
         }
       })
   }
+
+  deleteCategorie(cat: Categorie) {
+    if (confirm('Etes-vous sûr de vouloir supprimer?'))
+      this.cs.deleteCategorie(cat)
+        .subscribe({
+          next: value => {
+            this.categories = this.categories.filter(p => p.id != cat.id);
+          }
+        })
+  }
+
 }
