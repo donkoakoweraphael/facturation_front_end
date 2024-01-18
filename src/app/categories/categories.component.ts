@@ -1,14 +1,23 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent {
-  categories: Array<any> = [
-    { id: 1, designation: "Informatique" },
-    { id: 2, designation: "Automibile" },
-    { id: 3, designation: "Electronique" }
-  ];
+export class CategoriesComponent implements OnInit {
+  constructor(private http: HttpClient) { }
+  categories: Array<any> = [];
+  ngOnInit(): void {
+    this.http.get<Array<any>>('http://localhost:8888/categories')
+      .subscribe({
+        next: data => {
+          this.categories = data
+        },
+        error: err => {
+          console.log(err);
+        }
+      })
+  }
 }
