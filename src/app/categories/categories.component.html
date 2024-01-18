@@ -1,0 +1,27 @@
+<div class="p-3">
+    <div class="card">
+        <div class="card-body">
+            <h3>Liste des catégories</h3>
+        </div>
+    </div>
+</div>
+<div class="p-3">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-hover table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Désignation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cat of categories">
+                        <td>{{cat.id}}</td>
+                        <td>{{cat.designation}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
