@@ -1,16 +1,24 @@
 {
-    "categories": [
-        {
-            "id": 1,
-            "designation": "Informatique"
-        },
-        {
-            "id": 2,
-            "designation": "Automibile"
-        },
-        {
-            "id": 3,
-            "designation": "Electronique"
-        }
-    ]
+  "categories": [
+    {
+      "id": "1",
+      "designation": "Informatique"
+    },
+    {
+      "id": "3",
+      "designation": "Electronique"
+    },
+    {
+      "id": "32df",
+      "designation": "Economie"
+    },
+    {
+      "id": "150c",
+      "designation": "Comptabilité"
+    },
+    {
+      "id": "ad5d",
+      "designation": "Finances"
+    }
+  ]
 }
