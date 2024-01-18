@@ -22,4 +22,12 @@ export class CategorieService {
     return this.http.post<Categorie>('http://localhost:8888/categories', categorie);
   }
 
+  public getCategoryById(categorieId: number): Observable<Categorie> {
+    return this.http.get<Categorie>(`http://localhost:8888/categories/${categorieId}`);
+  }
+
+  public updateCategorie(categorie: Categorie): Observable<Categorie> {
+    return this.http.put<Categorie>(`http://localhost:8888/categories/${categorie.id}`, categorie);
+  }
+
 }

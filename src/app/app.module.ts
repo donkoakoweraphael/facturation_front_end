@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { BindingComponent } from './binding/binding.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { NovelleCategorieComponent } from './novelle-categorie/novelle-categorie.component';
+import { EditerCategorieComponent } from './editer-categorie/editer-categorie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BindingComponent,
     CategoriesComponent,
-    NovelleCategorieComponent
+    NovelleCategorieComponent,
+    EditerCategorieComponent
   ],
   imports: [
     BrowserModule,

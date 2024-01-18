@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../services/categorie.service';
 import { Categorie } from '../models/categorie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -10,7 +11,8 @@ import { Categorie } from '../models/categorie';
 })
 export class CategoriesComponent implements OnInit {
   categories: Array<any> = [];
-  constructor(private cs: CategorieService) { }
+  constructor(private cs: CategorieService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.cs.getAllCategories()
@@ -32,6 +34,10 @@ export class CategoriesComponent implements OnInit {
             this.categories = this.categories.filter(p => p.id != cat.id);
           }
         })
+  }
+
+  editerCategorie(cat: Categorie) {
+    this.router.navigateByUrl(`editer-categorie/${cat.id}`);
   }
 
 }
