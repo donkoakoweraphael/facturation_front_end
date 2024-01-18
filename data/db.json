@@ -1,0 +1,16 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "designation": "Informatique"
+        },
+        {
+            "id": 2,
+            "designation": "Automibile"
+        },
+        {
+            "id": 3,
+            "designation": "Electronique"
+        }
+    ]
+}
