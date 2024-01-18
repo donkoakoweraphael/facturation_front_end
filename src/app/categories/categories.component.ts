@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategorieService } from '../services/categorie.service';
 import { Categorie } from '../models/categorie';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-categories',
@@ -10,11 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  visuallyHiddenBeforeAddClick: string = "visually-hidden";
+  visuallyHiddenAfterAddClick: string = "";
+  categorieForm!: FormGroup;
+
   categories: Array<any> = [];
   constructor(private cs: CategorieService,
+    private fb: FormBuilder,
     private router: Router) { }
 
+  initCategorieForm(): void {
+    this.categorieForm = this.fb.group({
+      designation: this.fb.control('', [Validators.required])
+    });
+  }
+
   ngOnInit(): void {
+    this.initCategorieForm();
     this.cs.getAllCategories()
       .subscribe({
         next: data => {
@@ -24,6 +37,30 @@ export class CategoriesComponent implements OnInit {
           console.log(err);
         }
       })
+  }
+
+  addCategorieButtonClick(): void {
+    this.visuallyHiddenAfterAddClick = this.visuallyHiddenBeforeAddClick;
+    this.visuallyHiddenBeforeAddClick = "";
+    this.initCategorieForm();
+  }
+
+  closeAddCategorie(): void {
+    this.visuallyHiddenBeforeAddClick = this.visuallyHiddenAfterAddClick;
+    this.visuallyHiddenAfterAddClick = "";
+    //this.categorieForm.value.designation = "";
+  }
+
+  checkSubmitButtonClick(): void {
+    //if (this.categorieForm.value.designation != "") {
+    if (this.categorieForm.valid) {
+      this.cs.saveCategorie(this.categorieForm.value)
+        .subscribe({
+          next: data => {
+            this.ngOnInit();
+          }
+        });
+    }
   }
 
   deleteCategorie(cat: Categorie) {
