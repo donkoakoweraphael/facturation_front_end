@@ -5,7 +5,7 @@ import { NovelleCategorieComponent } from './novelle-categorie/novelle-categorie
 import { BindingComponent } from './binding/binding.component';
 
 const routes: Routes = [
-  {path: "", component: BindingComponent}
+  {path: "", component: BindingComponent},
   {path: "categories", component: CategoriesComponent},
   {path: "nouvelle-categorie", component: NovelleCategorieComponent}
 ];
