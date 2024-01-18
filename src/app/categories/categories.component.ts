@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CategorieService } from '../services/categorie.service';
 
 @Component({
   selector: 'app-categories',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  constructor(private http: HttpClient) { }
   categories: Array<any> = [];
+  constructor(private cs: CategorieService) { }
+
   ngOnInit(): void {
-    this.http.get<Array<any>>('http://localhost:8888/categories')
+    this.cs.getAllCategories()
       .subscribe({
         next: data => {
           this.categories = data
