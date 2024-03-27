@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriesComponent } from './categories/categories.component';
-import { NovelleCategorieComponent } from './novelle-categorie/novelle-categorie.component';
-import { BindingComponent } from './binding/binding.component';
-import { EditerCategorieComponent } from './editer-categorie/editer-categorie.component';
+import { FormulaireAchatComponent } from './formulaire-achat/formulaire-achat.component';
+import { authGuard } from './_helpers/auth.guard';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const routes: Routes = [
-  {path: "", component: BindingComponent},
-  {path: "categories", component: CategoriesComponent},
-  {path: "nouvelle-categorie", component: NovelleCategorieComponent},
-  {path: "editer-categorie/:id", component: EditerCategorieComponent}
+  { path: '', component: AccueilComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  {
+    path: 'achat', component: FormulaireAchatComponent
+    // canActivate: [authGuard]
+  },
 ];
 
 @NgModule({

@@ -5,18 +5,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BindingComponent } from './binding/binding.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { NovelleCategorieComponent } from './novelle-categorie/novelle-categorie.component';
-import { EditerCategorieComponent } from './editer-categorie/editer-categorie.component';
+import { LoginComponent } from './login/login.component';
+import { FormulaireAchatComponent } from './formulaire-achat/formulaire-achat.component';
+import { TokenInterceptorProvider } from './_helpers/token.interceptor';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BindingComponent,
-    CategoriesComponent,
-    NovelleCategorieComponent,
-    EditerCategorieComponent
+    LoginComponent,
+    FormulaireAchatComponent,
+    SignUpComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,7 @@ import { EditerCategorieComponent } from './editer-categorie/editer-categorie.co
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TokenInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

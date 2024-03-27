@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-md-6 p-4 bg-secondary text-white rounded-5">
+            <div *ngFor="let e of listeDesMessagesDErreur" class="text-danger">{{ e }}</div>
+            <form class="px-4 py-3" [formGroup]="loginForm" (submit)="seConnecter()">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Votre nom</label>
+                    <input type="text" id="username" class="form-control" placeholder="Nom d'utilisateur" formControlName="username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Votre mot de passe</label>
+                    <input type="password" id="password" class="form-control" placeholder="XXXXXXXXXXXXXX" formControlName="password">
+                </div>
+                <button [disabled]="loginForm.invalid" class="btn btn-success">Se connecter</button>
+            </form>
+            <span>
+                Vous n'avez pas de compte ? Cliquez sur
+                <a class="btn btn-outline-info" routerLink="/sign-up" href="#">Créer un compte</a>
+                pour vous enregistrer
+            </span>
+        </div>
+    </div>
+</div>
+

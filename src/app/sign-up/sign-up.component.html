@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-md-6 p-4 bg-secondary text-white rounded-5">
+            <form class="px-4 py-3" [formGroup]="signUpForm" (submit)="submitSignUpClick()">
+                <div *ngFor="let e of listeDesMessagesDErreur" class="text-danger">{{ e }}</div>
+                <div class="mb-3">
+                    <label class="form-label">Votre nom</label>
+                    <input type="text" class="form-control" placeholder="Nom d'utilisateur" formControlName="username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Votre mot de passe</label>
+                    <input type="password" class="form-control" placeholder="XXXXXXXXXXXXXX" formControlName="password">
+                </div>                
+                <div class="mb-3">
+                    <label class="form-label">Confirmer votre mot de passe</label>
+                    <input type="password" class="form-control" placeholder="XXXXXXXXXXXXXX" formControlName="passwordConfirm">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Votre adresse email</label>
+                    <input type="email" class="form-control" placeholder="blablablabla@nanana.com" formControlName="adresse_email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Votre numero de telephone</label>
+                    <input type="text" class="form-control" placeholder="00000000000000" formControlName="telephone">
+                </div>
+                <button [disabled]="signUpForm.invalid" class="btn btn-success">Créer le compte</button>
+            </form>
+            <span>
+                Vous avez déja un compte ? Cliquez sur
+                <a class="btn btn-outline-info" routerLink="/login" href="#">Se connecter</a>
+                pour accéder à la plateforme
+            </span>
+        </div>
+    </div>
+</div>
+

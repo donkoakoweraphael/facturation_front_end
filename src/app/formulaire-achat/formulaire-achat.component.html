@@ -1,0 +1,101 @@
+<button (click)="seDeconnecter()" class="btn btn-outline-danger">Se déconnecter</button>
+<div *ngIf="aEteEnvoyeAvecSucess; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="container">
+        <h1>
+            Votre commande a été bien reçu.
+            Une facture a été envoyé sur votre adresse email et sur votre numéro WhatsApp.
+            <br>
+            Nous vous remercions pour votre confiance envers nous.
+        </h1>
+        <button class="btn btn-link" (click)="faireUneNouvelleCommandeClick()">
+            Cliquer sur ce lien pour effectuer une autre commande
+        </button>
+    </div>
+</ng-template>
+<ng-template #elseBlock>
+    <div class="p-3">
+        <div class="card">
+            <div class="card-body">
+                <h3>Choisissez le articles que vous souhaitez acheter</h3>
+            </div>
+        </div>
+    </div>
+    <div class="p-3">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Désignation</th>
+                            <th>Prix unitaire</th>
+                            <th>Quantité</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let choix of listeDesChoixAAfficher">
+                            <td>#</td>
+                            <td>
+                                {{ choix.designation }}
+                            </td>
+                            <td>
+                                {{ choix.prixUnitaire }}
+                            </td>
+                            <td>
+                                {{ choix.quantite }}
+                            </td>
+                            <td>
+                                <button (click)="supprimerUneLigneClick(choix)" class="btn btn-outline-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div class="{{ visuallyHiddenBeforeAddClick }}">
+                                    <form [formGroup]="formulaire" (ngSubmit)="checkSubmitButtonClick()">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <select formControlName="article" class="form-select">
+                                                    <option *ngFor="let a of article; let i = index"
+                                                        [value]="article[i].id">
+                                                        {{article[i].designation}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3">
+                                                <input type="number" class="form-control" formControlName="quantite">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="{{ visuallyHiddenAfterAddClick }}">
+                                    <button (click)="addChoixButtonClick()" class="btn btn-outline-secondary me-1">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                                <div class="{{ visuallyHiddenBeforeAddClick }}">
+                                    <button (click)="checkSubmitButtonClick()" class="btn btn-outline-success me-1">
+                                        <i class="bi bi-check-lg"></i>
+                                    </button>
+                                    <button (click)="closeAddChoix()" class="btn btn-outline-danger">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="p-5 {{ visuallyHiddenWhenNoChoices() }} ">
+            <button class="btn btn-success" (click)="envoyerLaCommandeClick()">
+                Envoyer votre commande
+            </button>
+        </div>
+    </div>
+</ng-template>
